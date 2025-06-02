@@ -1,13 +1,13 @@
 import React from 'react'
 import Menubar from '../../components/Menubar'
 
-const Dashboard = () => {
+const Reports = () => {
   return (
     <div className='page'>
-      <Menubar heading="Dashboard"/>
+      <Menubar heading="Reports & Analytics"/>
       <div className='grow overflow-auto'>Children</div>
     </div>
   )
 }
 
-export default Dashboard
+export default Reports

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom'
 import LoginImg from '../../assets/Login.webp'
 import {toast, Bounce} from 'react-toastify'
 import API from '../../utils/API'
 import {useNavigate} from 'react-router-dom'
-import { ClipLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners"
+import { motion } from "motion/react"
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -70,27 +71,43 @@ const Login = () => {
         </div>
       )}
       <div className='w-1/2 flex flex-col justify-center px-16'>
-        <div className='flex'>
+        <motion.div className='flex'
+          initial={{opacity: 0, x: -400}}
+          animate={{opacity: 1, x: 0}}
+          transition={{type:'spring', stiffness: 100, damping: 12, delay: 0.4}}
+        >
           <FamilyRestroomIcon sx={{color: 'rgb(123, 72, 255)', fontSize: '1.25rem'}} />
           <p className='font-semibold ml-1'>Parental Control</p>
-        </div>
+        </motion.div>
 
-        <div className='py-8'>
+        <motion.div className='py-8'
+          initial={{opacity: 0, y: 100}}
+          animate={{opacity: 1, y: 0}}
+          transition={{type:'spring', stiffness: 100, damping: 10, delay: 0.6}}
+        >
           <h1>Holla,</h1>
           <h1>Welcome Back</h1>
           <p className='text-gray-500'>Hey, welcome back to your special place</p>
-        </div>
+        </motion.div>
 
-        <form className='flex flex-col' onSubmit={handleLogin}>
+        <motion.form className='flex flex-col' onSubmit={handleLogin}
+          initial={{opacity: 0, y: 100}}
+          animate={{opacity: 1, y: 0}}
+          transition={{type:'spring', stiffness: 100, damping: 10, delay: 0.8}}
+        >
           <input type="email" name="email" id="email" placeholder='enter your email' className='auth-input' value={email} onChange={(e) => setEmail(e.target.value)} required/>
           <input type="password" name="password" id="password" placeholder='enter your password' className='auth-input' value={password} onChange={(e) => setPassword(e.target.value)} required/>
           <button className="bg-[#7B48FF] hover:bg-[#5e34cc] w-1/3 mt-2 text-white py-2 rounded-lg ">Sign in</button>
-        </form>
+        </motion.form>
       </div>
 
-      <div className='w-1/2 m-2'>
+      <motion.div className='w-1/2 m-2'
+        initial = {{opacity: 0, scale: 0}}
+        animate = {{opacity: 1, scale: 1}}
+        transition={{type: 'spring', stiffness: 100, damping: 20, delay: 0.8}}
+      >
         <img src={LoginImg} alt="Login Img" className='h-full w-full rounded-2xl'/>
-      </div>
+      </motion.div>
     </div>
   )
 }
