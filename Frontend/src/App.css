@@ -9,13 +9,14 @@ html {
 }
 
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 .auth-input {
   @apply rounded-md p-2 my-1 border border-gray-300 w-2/3;
 }
 
 .nav-items {
-  @apply flex items-center gap-2 p-3 mb-2 cursor-pointer rounded-lg text-white hover:bg-[var(--secondary-dark)];
+  @apply flex items-center gap-2 p-3 mb-2 cursor-pointer rounded-lg text-[#213547] hover:bg-[var(--secondary-sidebar)] dark:text-white;
 }
 
 .nav-items-heading {

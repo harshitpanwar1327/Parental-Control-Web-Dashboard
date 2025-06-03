@@ -14,7 +14,7 @@ function App() {
   const location = useLocation();
   const hideNavigationBar = ["/", "/login"];
   const isAuthenticated = window.sessionStorage.getItem('isAuthenticated');
-
+  
   return (
     <>
       {!hideNavigationBar.includes(location.pathname) && <NavigationBar />}

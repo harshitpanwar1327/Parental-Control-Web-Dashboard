@@ -25,12 +25,12 @@ const NavigationBar = () => {
   };
 
   return (
-    <motion.div className="h-screen bg-[var(--primary-dark)] text-white flex flex-col p-4"
+    <motion.div className="h-screen bg-[var(--primary-sidebar)] text-white flex flex-col p-4"
       variants={sidebarVariants}
       animate={isOpen ? "open" : "closed"}
       initial="closed"
     >
-      <div className='flex w-full items-center h-20 justify-between px-3'>
+      <div className='flex w-full items-center h-20 justify-between px-3 text-[#213547] dark:text-white'>
         <AnimatePresence>
           {isOpen && (
             <motion.p className='font-bold ml-1 text-xl'
@@ -41,11 +41,11 @@ const NavigationBar = () => {
             >Parental Control</motion.p>
           )}
         </AnimatePresence>
-        <MenuIcon className='justify-self-end cursor-pointer' sx={{color: 'white'}} onClick={()=>toggle()}/>
+        <MenuIcon className='justify-self-end cursor-pointer' onClick={()=>toggle()}/>
       </div>
 
       <div className='flex flex-col'>
-        <NavLink to={'/dashboard'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-dark)]': ''}`}>
+        <NavLink to={'/dashboard'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-sidebar)]': ''}`}>
           <DashboardRoundedIcon/>
           <AnimatePresence>
             {isOpen && (
@@ -60,7 +60,7 @@ const NavigationBar = () => {
             )}
           </AnimatePresence>
         </NavLink>
-        <NavLink to={'/children'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-dark)]': ''}`}>
+        <NavLink to={'/children'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-sidebar)]': ''}`}>
           <ContactsRoundedIcon/>
           <AnimatePresence>
             {isOpen && (
@@ -75,7 +75,7 @@ const NavigationBar = () => {
             )}
           </AnimatePresence>
         </NavLink>
-        <NavLink to={'/monitoring'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-dark)]': ''}`}>
+        <NavLink to={'/monitoring'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-sidebar)]': ''}`}>
           <OndemandVideoRoundedIcon/>
           <AnimatePresence>
             {isOpen && (
@@ -90,7 +90,7 @@ const NavigationBar = () => {
             )}
           </AnimatePresence>
         </NavLink>
-        <NavLink to={'/controls'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-dark)]': ''}`}>
+        <NavLink to={'/controls'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-sidebar)]': ''}`}>
           <SecurityUpdateWarningRoundedIcon/>
           <AnimatePresence>
             {isOpen && (
@@ -105,7 +105,7 @@ const NavigationBar = () => {
             )}
           </AnimatePresence>
         </NavLink>
-        <NavLink to={'/reports'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-dark)]': ''}`}>
+        <NavLink to={'/reports'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-sidebar)]': ''}`}>
           <DonutSmallRoundedIcon/>
           <AnimatePresence>
             {isOpen && (
@@ -120,7 +120,7 @@ const NavigationBar = () => {
             )}
           </AnimatePresence>
         </NavLink>
-        <NavLink to={'/settings'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-dark)]': ''}`}>
+        <NavLink to={'/settings'} className={({isActive}) => `nav-items ${isActive? 'border-r-3 bg-[var(--secondary-sidebar)]': ''}`}>
           <SettingsSuggestRoundedIcon/>
           <AnimatePresence>
             {isOpen && (
