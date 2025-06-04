@@ -9,6 +9,7 @@ import Monitoring from './pages/main/Monitoring'
 import Controls from './pages/main/Controls'
 import Reports from './pages/main/Reports'
 import Settings from './pages/main/Settings'
+import Feedback from './pages/main/Feedback'
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
           <Route path='/controls' element={<Controls />}/>
           <Route path='/reports' element={<Reports />}/>
           <Route path='/settings' element={<Settings />}/>
+          <Route path='/feedback' element={<Feedback />}/>
         </Route>
 
         <Route path='*' element={<Navigate to='/' />} />

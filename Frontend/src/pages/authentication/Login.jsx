@@ -26,6 +26,7 @@ const Login = () => {
       })
 
       const token = response.data.data;
+      window.sessionStorage.setItem('authUser', email);
       window.sessionStorage.setItem('authToken', token);
       window.sessionStorage.setItem('isAuthenticated', true);
 

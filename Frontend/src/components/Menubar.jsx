@@ -72,6 +72,7 @@ const Menubar = ({heading}) => {
   }
 
   const handleLogout = () => {
+    window.sessionStorage.removeItem('authUser');
     window.sessionStorage.removeItem('authToken');
     window.sessionStorage.removeItem('isAuthenticated');
     navigate('/login');

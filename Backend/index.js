@@ -3,10 +3,16 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import {rateLimit} from 'express-rate-limit'
+import AuthMiddleware from './middlewares/AuthMiddleware.js'
 import {checkConnection} from './configs/Database.js'
 import createAllTables from './utils/CreateTable.js'
+import sendEmail from './mailer/index.js'
 import UsersRoutes from './routes/UsersRoutes.js'
-import AuthMiddleware from './middlewares/AuthMiddleware.js'
+import ChildrenRoutes from './routes/ChildrenRoutes.js'
+import ActivitiesRoutes from './routes/ActivitiesRoutes.js'
+import ControlsRoutes from './routes/ControlsRoutes.js'
+import SettingsRoutes from './routes/SettingsRoutes.js'
+import FeedbackRoutes from './routes/FeedbackRoutes.js'
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -26,6 +32,18 @@ app.use('/api/users', UsersRoutes);
 
 app.use(AuthMiddleware);
 
+app.use('/api/children', ChildrenRoutes);
+
+app.use('/api/activities', ActivitiesRoutes);
+
+app.use('/api/controls', ControlsRoutes);
+
+app.use('/api/settings', SettingsRoutes);
+
+app.use('/api/feedback', FeedbackRoutes);
+
+app.post('/api/sendEmail', sendEmail);
+
 app.use((req, res, next) => {
     res.status(404).json({message: "Page not found!"})
 })
@@ -41,6 +59,6 @@ app.listen(PORT, () => {
         checkConnection();
         createAllTables();
     } catch (error) {
-        console.log("Something went wrong! ", error);
+        console.log("Something went wrong!", error);
     }
 })
