@@ -25,7 +25,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <motion.div className="h-screen bg-[var(--primary-sidebar)] text-white flex flex-col p-4"
+    <motion.div className="h-screen bg-[var(--primary-sidebar)] text-white flex flex-col p-4 border-r-4 border-[#0000001a] dark:border-[#ffffff5a]"
       variants={sidebarVariants}
       animate={isOpen ? "open" : "closed"}
       initial="closed"

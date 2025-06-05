@@ -5,7 +5,7 @@ const Feedback = () => {
   return (
     <div className='page'>
       <Menubar heading="Feedback"/>
-      <div className='grow overflow-auto'>Feedback</div>
+      <div className='grow overflow-auto bg-[var(--primary-sidebar)] m-4 rounded-xl'></div>
     </div>
   )
 }
