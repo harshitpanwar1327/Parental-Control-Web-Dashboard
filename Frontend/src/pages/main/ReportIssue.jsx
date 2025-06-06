@@ -1,13 +1,13 @@
 import React from 'react'
 import Menubar from '../../components/Menubar'
 
-const Feedback = () => {
+const ReportIssue = () => {
   return (
     <div className='page'>
       <Menubar heading="Feedback"/>
-      <div className='grow overflow-auto bg-[var(--primary-sidebar)] m-4 rounded-xl'></div>
+      <div className='grow m-4'></div>
     </div>
   )
 }
 
-export default Feedback
+export default ReportIssue

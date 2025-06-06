@@ -1,14 +1,14 @@
-import {Users} from '../models/UsersModels.js'
+import {UsersModels} from '../models/UsersModels.js'
 import {registerUserLogic, loginUserLogic} from '../services/UsersServices.js'
 
 export const registerUser = async (req, res) => {
-    let {name, email, password} = req.body;
+    let {name, email, password, license, expiry_date} = req.body;
 
-    if(!name || !email || !password) {
+    if(!name || !email || !password || !license || !expiry_date) {
         return res.status(400).json({success: false, message: "All fields are required!"});
     }
 
-    let userData = new Users({name, email, password});
+    let userData = new UsersModels({name, email, password, license, expiry_date});
 
     try {
         const response = await registerUserLogic(userData);
@@ -30,10 +30,8 @@ export const loginUser = async (req, res) => {
         return res.status(400).json({success: false, message: "All fields are required!"});
     }
 
-    let userData = new Users({email, password});
-
     try {
-        const response = await loginUserLogic(userData);
+        const response = await loginUserLogic(email, password);
         if(response.success) {
             return res.status(200).json(response);
         } else {

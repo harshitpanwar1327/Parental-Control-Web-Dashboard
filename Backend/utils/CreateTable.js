@@ -5,6 +5,8 @@ const users_table = `CREATE TABLE IF NOT EXISTS users(
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    license VARCHAR(16) NOT NULL,
+    expiry_date DATETIME NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )`;
 
@@ -15,6 +17,18 @@ const children_table = `CREATE TABLE IF NOT EXISTS children(
     age INT,
     imageFileName VARCHAR(255),
     FOREIGN KEY (parentId) REFERENCES users(id) ON DELETE CASCADE
+)`
+
+const devices_table = `CREATE TABLE IF NOT EXISTS devices(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    childId INT,
+    device_name VARCHAR(50) NOT NULL,
+    os VARCHAR(50) NOT NULL,
+    mac_address VARCHAR(20),
+    ip_address VARCHAR(45),
+    disc_serial VARCHAR(50) NOT NULL,
+    license VARCHAR(16) NOT NULL,
+    FOREIGN KEY (childId) REFERENCES devices(id) ON DELETE CASCADE
 )`
 
 const activity_table = `CREATE TABLE IF NOT EXISTS activities(
@@ -41,7 +55,9 @@ const controls_table = `CREATE TABLE IF NOT EXISTS controls(
 const settings_table = `CREATE TABLE IF NOT EXISTS settings(
     id INT AUTO_INCREMENT PRIMARY KEY,
     parentId INT,
-    notifications BOOLEAN DEFAULT TRUE,
+    app_alerts BOOLEAN DEFAULT TRUE,
+    email_notifications BOOLEAN DEFAULT TRUE,
+    offers_notifications BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (parentId) REFERENCES users(id) ON DELETE CASCADE
 )`
 
@@ -70,6 +86,7 @@ const createAllTables = async () => {
     try {
         await createTable("Users", users_table);
         await createTable("Children", children_table);
+        await createTable("Devices", devices_table);
         await createTable("Activities", activity_table);
         await createTable("Controls", controls_table);
         await createTable("Settings", settings_table);

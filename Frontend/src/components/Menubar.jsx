@@ -3,6 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 import {useNavigate} from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -62,12 +63,28 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const Menubar = ({heading}) => {
   const navigate = useNavigate();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const currentTheme = window.localStorage.getItem('theme');
+    if(currentTheme === 'dark') {
+      document.querySelector('body').setAttribute('data-theme', 'dark');
+      setIsDark(true);
+    } else {
+      document.querySelector('body').setAttribute('data-theme', 'light');
+      setIsDark(false);
+    }
+  }, [])
 
   const handleThemeChange = (e) => {
     if(e.target.checked) {
       document.querySelector('body').setAttribute('data-theme', 'dark');
+      window.localStorage.setItem('theme', 'dark');
+      setIsDark(true);
     } else {
       document.querySelector('body').setAttribute('data-theme', 'light');
+      window.localStorage.setItem('theme', 'light');
+      setIsDark(false);
     }
   }
 
@@ -81,11 +98,10 @@ const Menubar = ({heading}) => {
   return (
     <div className='flex justify-between items-center px-4 bg-[var(--primary-sidebar)]'>
       <h2 className='font-semibold text-xl'>{heading}</h2>
-      <div className='flex items-center'>
+      <div className='flex items-center select-none'>
         <FormControlLabel
-          control={<MaterialUISwitch sx={{ m: 1 }} />}
+          control={<MaterialUISwitch sx={{ m: 1 }} onChange={handleThemeChange} checked={isDark}/>}
           label="Theme switch"
-          onChange={handleThemeChange}
         />
         <div className='flex items-center gap-2 cursor-pointer text-red-500' onClick={handleLogout}>
           <LogoutRoundedIcon sx={{ fontSize: '28px' }}/>

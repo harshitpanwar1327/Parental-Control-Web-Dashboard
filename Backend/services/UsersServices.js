@@ -8,8 +8,8 @@ dotenv.config();
 export const registerUserLogic = async (userData) => {
     try {
         const hash_password = await bcrypt.hash(userData.password, 10);
-        const query = `INSERT INTO users(name, email, password) VALUES(?,?,?)`;
-        const values = [userData.name, userData.email, hash_password];
+        const query = `INSERT INTO users(name, email, password, license, expiry_date) VALUES(?,?,?,?,?)`;
+        const values = [userData.name, userData.email, hash_password, userData.license, userData.expiry_date];
 
         await pool.query(query, values);
         return {success: true, message: "User registered in the database successfully"}
@@ -19,15 +19,15 @@ export const registerUserLogic = async (userData) => {
     }
 }
 
-export const loginUserLogic = async (userData) => {
+export const loginUserLogic = async (email, password) => {
     try {
-        const [userRow] = await pool.query(`SELECT * FROM users WHERE email = ?`, [userData.email]);
+        const [userRow] = await pool.query(`SELECT * FROM users WHERE email = ?`, [email]);
         if(userRow.length == 0) {
             return {success: false, message: "User not found!"}
         }
 
-        const password = userRow[0].password;
-        const confirmPassword = await bcrypt.compare(userData.password, password);
+        const verifyPassword = userRow[0].password;
+        const confirmPassword = await bcrypt.compare(password, verifyPassword);
         if(!confirmPassword) {
             return {success: false, message: "Invalid credentials!"}
         }

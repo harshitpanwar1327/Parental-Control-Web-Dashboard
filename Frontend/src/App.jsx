@@ -9,7 +9,7 @@ import Monitoring from './pages/main/Monitoring'
 import Controls from './pages/main/Controls'
 import Reports from './pages/main/Reports'
 import Settings from './pages/main/Settings'
-import Feedback from './pages/main/Feedback'
+import ReportIssue from './pages/main/ReportIssue'
 import Policy from './pages/main/Policy'
 import Terms from './pages/main/Terms'
 import FAQ from './pages/main/FAQ'
@@ -33,7 +33,7 @@ function App() {
           <Route path='/controls' element={<Controls />}/>
           <Route path='/reports' element={<Reports />}/>
           <Route path='/settings' element={<Settings />}/>
-          <Route path='/feedback' element={<Feedback />}/>
+          <Route path='/report-issue' element={<ReportIssue />}/>
           <Route path='/policy' element={<Policy />}/>
           <Route path='/terms' element={<Terms />}/>
           <Route path='/faq' element={<FAQ />}/>

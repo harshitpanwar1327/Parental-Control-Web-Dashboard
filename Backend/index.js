@@ -9,6 +9,7 @@ import createAllTables from './utils/CreateTable.js'
 import sendEmail from './mailer/SendMail.js'
 import UsersRoutes from './routes/UsersRoutes.js'
 import ChildrenRoutes from './routes/ChildrenRoutes.js'
+import DevicesRoutes from './routes/DevicesRoutes.js'
 import ActivitiesRoutes from './routes/ActivitiesRoutes.js'
 import ControlsRoutes from './routes/ControlsRoutes.js'
 import SettingsRoutes from './routes/SettingsRoutes.js'
@@ -29,6 +30,8 @@ const limiter = rateLimit({
 app.use(limiter)
 
 app.use('/api/users', UsersRoutes);
+
+app.use('/api/devices', DevicesRoutes);
 
 app.use(AuthMiddleware);
 

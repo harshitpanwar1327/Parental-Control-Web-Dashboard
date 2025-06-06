@@ -22,7 +22,7 @@ const Settings = () => {
               <Switch {...label} defaultChecked />
             </div>
             <div className='flex flex-col items-center w-1/3'>
-              <p>New Feature Alerts</p>
+              <p>Offers & Subscription</p>
               <Switch {...label} defaultChecked />
             </div>
           </div>
@@ -41,7 +41,7 @@ const Settings = () => {
         <div className='bg-[var(--primary-sidebar)] rounded-xl p-4'>
           <h2 className='font-bold text-xl mb-4'>🔗 Support & Resources</h2>
           <div className='flex gap-4'>
-            <NavLink to={'/feedback'} className='w-1/4 text-center'>💬 Give Feedback</NavLink>
+            <NavLink to={'/report-issue'} className='w-1/4 text-center'>💬 Report an Issue</NavLink>
             <NavLink to={'/policy'} className='w-1/4 text-center'>📜 Privacy Policy</NavLink>
             <NavLink to={'/terms'} className='w-1/4 text-center'>📄 Terms of Service</NavLink>
             <NavLink to={'/faq'} className='w-1/4 text-center'>❓ Help / FAQs</NavLink>
