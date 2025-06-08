@@ -1,5 +1,5 @@
 import React from 'react'
-import Menubar from '../../components/Menubar'
+import Menubar from '../../../components/Menubar'
 
 const Terms = () => {
   return (

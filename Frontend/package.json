@@ -24,7 +24,8 @@
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
     "sweetalert2": "^11.22.0",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

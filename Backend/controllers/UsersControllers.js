@@ -1,5 +1,5 @@
 import {UsersModels} from '../models/UsersModels.js'
-import {registerUserLogic, loginUserLogic} from '../services/UsersServices.js'
+import {registerUserLogic, loginUserLogic, getLicenseLogic} from '../services/UsersServices.js'
 
 export const registerUser = async (req, res) => {
     let {name, email, password, license, expiry_date} = req.body;
@@ -39,6 +39,26 @@ export const loginUser = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(400).json({success: false, message: "Unable to login user! Please try again!"})
+        return res.status(400).json({success: false, message: "Unable to login user! Please try again!"});
+    }
+}
+
+export const getLicense = async (req, res) => {
+    const {parentId} = req.params;
+
+    if(!parentId) {
+        return res.status(400).json({success: false, message: "Parent id not found!"});
+    }
+
+    try {
+        const response = await getLicenseLogic(parentId);
+        if(response.success) {
+            return res.status(200).json(response);
+        } else {
+            return res.status(400).json(response);
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({success: false, message: "Unable to login user! Please try again!"});
     }
 }

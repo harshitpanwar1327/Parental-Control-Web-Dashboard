@@ -13,7 +13,7 @@ import DevicesRoutes from './routes/DevicesRoutes.js'
 import ActivitiesRoutes from './routes/ActivitiesRoutes.js'
 import ControlsRoutes from './routes/ControlsRoutes.js'
 import SettingsRoutes from './routes/SettingsRoutes.js'
-import FeedbackRoutes from './routes/FeedbackRoutes.js'
+import ReportIssueRoutes from './routes/ReportIssueRoutes.js'
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -43,7 +43,7 @@ app.use('/api/controls', ControlsRoutes);
 
 app.use('/api/settings', SettingsRoutes);
 
-app.use('/api/feedback', FeedbackRoutes);
+app.use('/api/report-issue', ReportIssueRoutes);
 
 app.post('/api/sendEmail', sendEmail);
 

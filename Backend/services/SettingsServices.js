@@ -3,7 +3,7 @@ import {pool} from '../configs/Database.js'
 export const getSettingsLogic = async (parentId) => {
     try {
         const [rows] = await pool.query(`SELECT * FROM settings WHERE parentId = ?`, [parentId]);
-
+        
         return {success: true, message: "Settings fetched successfully!", data: rows}
     } catch (error) {
         console.log(error);
@@ -11,15 +11,13 @@ export const getSettingsLogic = async (parentId) => {
     }
 }
 
-export const updateSettingsLogic = async (settingsData) => {
+export const updateSettingsLogic = async (parentId, key, value) => {
     try {
-        const query = `INSERT INTO settings(parentId, notifications) VALUES(?,?)`;
-        const values = [settingsData.parentId, settingsData.notifications];
-        await pool.query(query, values);
+        await pool.query(`UPDATE settings SET ${key} = ${value} WHERE parentId = ${parentId}`);
 
-        return {success: true, message: "Settings fetched successfully!"}
+        return {success: true, message: "Settings updated successfully!"}
     } catch (error) {
         console.log(error);
-        return {success: false, message: "Failed to load settings!"};
+        return {success: false, message: "Failed to update settings!"};
     }
 }

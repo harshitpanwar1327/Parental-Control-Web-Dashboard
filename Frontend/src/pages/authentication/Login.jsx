@@ -25,10 +25,12 @@ const Login = () => {
         password: password
       })
 
-      const token = response.data.data;
-      window.sessionStorage.setItem('authUser', email);
-      window.sessionStorage.setItem('authToken', token);
-      window.sessionStorage.setItem('isAuthenticated', true);
+      const token = response.data.token;
+      const parentId = response.data.parentId;
+      sessionStorage.setItem('authUser', email);
+      sessionStorage.setItem('authToken', token);
+      sessionStorage.setItem('parentId', parentId);
+      sessionStorage.setItem('isAuthenticated', true);
 
       setEmail('');
       setPassword('');
@@ -48,7 +50,7 @@ const Login = () => {
       navigate('/dashboard');
     } catch (error) {
       console.log(error);
-      toast.error('Login Failed!', {
+      toast.error(error.response.data.message || 'Login Failed!', {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,

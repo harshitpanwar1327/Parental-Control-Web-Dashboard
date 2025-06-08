@@ -10,9 +10,13 @@ export const registerUserLogic = async (userData) => {
         const hash_password = await bcrypt.hash(userData.password, 10);
         const query = `INSERT INTO users(name, email, password, license, expiry_date) VALUES(?,?,?,?,?)`;
         const values = [userData.name, userData.email, hash_password, userData.license, userData.expiry_date];
-
         await pool.query(query, values);
-        return {success: true, message: "User registered in the database successfully"}
+
+        let [rows] = await pool.query(`SELECT * FROM users WHERE email = ?`, userData.email);
+
+        await pool.query(`INSERT INTO settings(parentId, app_alerts, email_notifications, offers_notifications) VALUES (?,?,?,?)`, [rows[0].id, true, true, true]);
+
+        return {success: true, message: "User registered in the database successfully"};
     } catch (error) {
         console.log(error);
         return {success: false, message: "Something went wrong while registering data in database!"}
@@ -38,9 +42,20 @@ export const loginUserLogic = async (email, password) => {
             {expiresIn: '3hr'}
         )
 
-        return {success: true, message: "User login successfully", data: token}
+        return {success: true, message: "User login successfully", token: token, parentId: userRow[0].id};
     } catch (error) {
         console.log(error);
-        return {success: false, message: "Something went wrong while fetching user data in database!"}
+        return {success: false, message: "Something went wrong while fetching user data in database!"};
+    }
+}
+
+export const getLicenseLogic = async (parentId) => {
+    try {
+        const [rows] = await pool.query(`SELECT license, expiry_date FROM users WHERE id = ?`, [parentId]);
+
+        return {success: true, message: "User login successfully", data: rows};
+    } catch (error) {
+        console.log(error);
+        return {success: false, message: "Could not find the license!"};
     }
 }

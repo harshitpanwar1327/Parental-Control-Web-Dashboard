@@ -5,7 +5,7 @@ dotenv.config();
 
 const AuthMiddleware = async (req, res, next) => {
     try {
-        const authHeader = req.header.authorization;
+        const authHeader = req.headers.authorization;
 
         if(!authHeader || !authHeader.startsWith('Bearer')) {
             return res.status(401).json({message: "Authorization token missing or malformed"});

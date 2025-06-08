@@ -6,11 +6,12 @@ const API = axios.create({
     timeout: 5000
 })
 
+let isAlertShown = false;
+
 // Request interceptor to attach token
 API.interceptors.request.use(
   (config) => {
-      const token = sessionStorage.getItem('AuthToken');
-      
+      const token = sessionStorage.getItem('authToken');
       if (token) {
           config.headers['Authorization'] = `Bearer ${token}`;
       }

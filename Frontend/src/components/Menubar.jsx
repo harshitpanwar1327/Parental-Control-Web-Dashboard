@@ -4,6 +4,7 @@ import Switch from '@mui/material/Switch'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 import {useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -66,7 +67,7 @@ const Menubar = ({heading}) => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const currentTheme = window.localStorage.getItem('theme');
+    const currentTheme = localStorage.getItem('theme');
     if(currentTheme === 'dark') {
       document.querySelector('body').setAttribute('data-theme', 'dark');
       setIsDark(true);
@@ -79,20 +80,38 @@ const Menubar = ({heading}) => {
   const handleThemeChange = (e) => {
     if(e.target.checked) {
       document.querySelector('body').setAttribute('data-theme', 'dark');
-      window.localStorage.setItem('theme', 'dark');
+      localStorage.setItem('theme', 'dark');
       setIsDark(true);
     } else {
       document.querySelector('body').setAttribute('data-theme', 'light');
-      window.localStorage.setItem('theme', 'light');
+      localStorage.setItem('theme', 'light');
       setIsDark(false);
     }
   }
 
   const handleLogout = () => {
-    window.sessionStorage.removeItem('authUser');
-    window.sessionStorage.removeItem('authToken');
-    window.sessionStorage.removeItem('isAuthenticated');
-    navigate('/login');
+    Swal.fire({
+      title: "Are you sure you want to logout?",
+      text: "You will need to log in again to access your account.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Logged out!",
+          text: "You have been successfully logged out.",
+          icon: "success"
+        });
+        sessionStorage.removeItem('authUser');
+        sessionStorage.removeItem('authToken');
+        sessionStorage.removeItem('parentId');
+        sessionStorage.removeItem('isAuthenticated');
+        navigate('/login');
+      }
+    });
   }
   
   return (

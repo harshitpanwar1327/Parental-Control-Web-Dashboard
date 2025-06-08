@@ -9,10 +9,10 @@ import Monitoring from './pages/main/Monitoring'
 import Controls from './pages/main/Controls'
 import Reports from './pages/main/Reports'
 import Settings from './pages/main/Settings'
-import ReportIssue from './pages/main/ReportIssue'
-import Policy from './pages/main/Policy'
-import Terms from './pages/main/Terms'
-import FAQ from './pages/main/FAQ'
+import ReportIssue from './pages/main/settings/ReportIssue'
+import Policy from './pages/main/settings/Policy'
+import Terms from './pages/main/settings/Terms'
+import FAQ from './pages/main/settings/FAQ'
 
 function App() {
   const location = useLocation();

@@ -21,14 +21,12 @@ export const getSettings = async (req, res) => {
 
 export const updateSettings = async (req, res) => {
     const {parentId} = req.params;
-    const {notifications} = req.body;
+    const {key, value} = req.body;
 
     if(!parentId) return res.status(400).json({success: false, message: "ParentId cannot be undefined!"});
 
-    const settingsData = new SettingsModels({parentId, notifications});
-
     try {
-        let response = await updateSettingsLogic(settingsData);
+        let response = await updateSettingsLogic(parentId, key, value);
         if(response.success) {
             return res.status(200).json(response);
         } else {

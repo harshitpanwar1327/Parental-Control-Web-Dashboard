@@ -16,7 +16,7 @@ html {
 }
 
 .nav-items {
-  @apply flex items-center gap-2 p-3 mb-2 cursor-pointer rounded-lg text-[#213547] hover:bg-[var(--secondary-sidebar)] dark:text-white;
+  @apply flex items-center gap-2 p-3 mb-2 cursor-pointer rounded-lg text-[#213547] hover:bg-[var(--secondary-sidebar)] dark:text-white transform hover:scale-110 duration-300;
 }
 
 .nav-items-heading {
@@ -25,4 +25,8 @@ html {
 
 .page {
   @apply w-full flex flex-col;
+}
+
+.support-image-custom-radius {
+  border-radius: 30% 70% 30% 70%;
 }

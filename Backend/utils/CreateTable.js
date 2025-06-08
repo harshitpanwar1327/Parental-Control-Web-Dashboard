@@ -61,11 +61,11 @@ const settings_table = `CREATE TABLE IF NOT EXISTS settings(
     FOREIGN KEY (parentId) REFERENCES users(id) ON DELETE CASCADE
 )`
 
-const feedback_table = `CREATE TABLE IF NOT EXISTS feedback(
+const report_issue_table = `CREATE TABLE IF NOT EXISTS report_issue(
     id INT AUTO_INCREMENT PRIMARY KEY,
     parentId INT,
     ticket_no VARCHAR(36) NOT NULL,
-    deviceID INT NOT NULL,
+    deviceId INT NOT NULL,
     issue_type VARCHAR(255) NOT NULL,
     issue_desc VARCHAR(255) NOT NULL,
     screenshot VARCHAR(100),
@@ -90,7 +90,7 @@ const createAllTables = async () => {
         await createTable("Activities", activity_table);
         await createTable("Controls", controls_table);
         await createTable("Settings", settings_table);
-        await createTable("Feedback", feedback_table);
+        await createTable("Report Issue", report_issue_table);
         console.log("All tables created successfully");
     } catch (error) {
         console.log("Table not created!", error);
