@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import './reportIssue.css'
 import Menubar from '../../../components/Menubar'
 import SupportImage from '../../../assets/support.png'
 import {motion} from 'motion/react'
@@ -69,7 +70,7 @@ const ReportIssue = () => {
   return (
     <div className='page'>
       <Menubar heading="Feedback"/>
-      <form className='flex flex-col grow m-2 py-4 px-8 rounded-md bg-[var(--primary-sidebar)]' onSubmit={handleForm}>
+      <div className='flex flex-col grow m-2 py-4 px-8 rounded-md bg-[var(--primary-sidebar)]'>
         <motion.h2 className='text-xl font-bold'
           initial={{opacity: 0, x: -100}}
           animate={{opacity: 1, x: 0}}
@@ -77,8 +78,8 @@ const ReportIssue = () => {
         >
           Tell Us About a Problem You’re Facing
         </motion.h2>
-        <div className='flex my-4'>
-          <div className='w-1/2 flex flex-col justify-center gap-2'>
+        <div className='flex flex-col gap-10 my-4 lg:flex-row'>
+          <form className='flex flex-col justify-center gap-2 lg:w-1/2' onSubmit={handleForm}>
             <motion.select name="deviceId" id="deviceId" className='auth-input' value={deviceId} onChange={(e) => setDeviceId(e.target.value)} required
               initial={{opacity: 0, y: 100}}
               animate={{opacity: 1, y: 0}}
@@ -117,9 +118,14 @@ const ReportIssue = () => {
               animate={{opacity: 1, y: 0}}
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 1}}
             />
-          </div>
-          <div className='w-1/2 flex items-center justify-center bg-[#FCEBCF] dark:bg-[var(--secondary-sidebar)] support-image-custom-radius'>
-            <motion.img src={SupportImage} alt="Support Image" className='h-95 md:h-65'
+            <motion.button className='text-white bg-blue-600 mt-2 hover:bg-blue-700 self-start'
+              initial={{opacity: 0, y: 100}}
+              animate={{opacity: 1, y: 0}}
+              transition={{type: 'spring', stiffness: 100, damping: 12, delay: 1.2}}
+            >Submit Issue</motion.button>
+          </form>
+          <div className='w-2/3 flex items-center justify-center bg-[#FCEBCF] dark:bg-[#a0b6ff] support-image-custom-radius'>
+            <motion.img src={SupportImage} alt="Support Image" className='h-100'
               animate={{
                 scale: [1, 1.1, 1],
                 y: [0, -10, 0]
@@ -133,12 +139,7 @@ const ReportIssue = () => {
             />
           </div>
         </div>
-        <motion.button className='text-white bg-blue-600 hover:bg-blue-700 self-start'
-          initial={{opacity: 0, y: 100}}
-          animate={{opacity: 1, y: 0}}
-          transition={{type: 'spring', stiffness: 100, damping: 12, delay: 1.2}}
-        >Submit Issue</motion.button>
-      </form>
+      </div>
     </div>
   )
 }

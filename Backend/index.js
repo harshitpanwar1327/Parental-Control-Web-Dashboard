@@ -25,9 +25,9 @@ app.use(express.json());
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000,
-	limit: 100,
+	limit: 1000,
 })
-app.use(limiter)
+app.use(limiter);
 
 app.use('/api/users', UsersRoutes);
 

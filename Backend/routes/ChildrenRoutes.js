@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/get-children', getChildren);
 router.post('/insert-child', insertChild);
-router.get('/get-child/:id', getChild);
-router.put('/update-child/:id', updateChild);
-router.delete('/delete-child/:id', deleteChild);
+router.get('/get-child/:childId', getChild);
+router.put('/update-child/:childId', updateChild);
+router.delete('/delete-child/:childId', deleteChild);
 
 export default router;

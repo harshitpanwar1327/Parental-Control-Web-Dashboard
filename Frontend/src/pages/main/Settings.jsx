@@ -125,7 +125,7 @@ const Settings = () => {
             <p className='w-1/4 text-center'><b>License Key:</b><br /> {licenseData.license ? licenseData.license : "No license"}</p>
             <p className='w-1/4 text-center'><b>Valid Till:</b><br /> {licenseData.expiry_date ? new Date(licenseData.expiry_date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}) : "N/A"}</p>
             <p className='w-1/4 text-center'><b>Status:</b><br /> {licenseData.expiry_date ? (new Date(licenseData.expiry_date) > new Date() ? '✔️ Active' : '❌ Expired') : "N/A"}</p>
-            <button className={`text-white ${licenseData.expiry_date && new Date(licenseData.expiry_date) > new Date() ? 'bg-gray-400 dark:bg-gray-700 !cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`} onClick={handleRenewal} disabled={licenseData.expiry_date && new Date(licenseData.expiry_date) > new Date()}>Renew License</button>
+            <button className={`text-white ${licenseData.expiry_date && new Date(licenseData.expiry_date) > new Date() ? 'bg-gray-400 dark:bg-gray-600 !cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`} onClick={handleRenewal} disabled={licenseData.expiry_date && new Date(licenseData.expiry_date) > new Date()}>Renew License</button>
           </div>
         </motion.div>
 

@@ -1,4 +1,4 @@
-class ChildrenModels {
+export class ChildrenModels {
     constructor(childrenData) {
         this.parentId = childrenData.parentId,
         this.name = childrenData.name,
@@ -6,5 +6,3 @@ class ChildrenModels {
         this.imageFileName = childrenData.imageFileName
     }
 }
-
-export default ChildrenModels;

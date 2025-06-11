@@ -1,3 +1,4 @@
+import {ChildrenModels} from '../models/ChildrenModels.js'
 import { getChildrenLogic, insertChildLogic, getChildLogic, updateChildLogic, deleteChildLogic } from '../services/ChildrenServices.js'
 
 export const getChildren = async (req, res) => {

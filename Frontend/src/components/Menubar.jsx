@@ -120,11 +120,10 @@ const Menubar = ({heading}) => {
       <div className='flex items-center select-none'>
         <FormControlLabel
           control={<MaterialUISwitch sx={{ m: 1 }} onChange={handleThemeChange} checked={isDark}/>}
-          label="Theme switch"
         />
         <div className='flex items-center gap-2 cursor-pointer text-red-500' onClick={handleLogout}>
           <LogoutRoundedIcon sx={{ fontSize: '28px' }}/>
-          <p className='font-semibold'>Logout</p>
+          <p className='font-semibold hidden md:block'>Logout</p>
         </div>
       </div>
     </div>

@@ -27,6 +27,14 @@ html {
   @apply w-full flex flex-col;
 }
 
-.support-image-custom-radius {
-  border-radius: 30% 70% 30% 70%;
+.table-heading {
+  @apply text-left text-[#4a3f99] bg-[var(--table-heading)] border-b border-[#434343] font-semibold p-2 h-[2rem];
+}
+
+.table-data {
+  @apply border-b border-[#848484] p-2 h-[2rem];
+}
+
+.modals-input {
+  @apply rounded-md p-2 my-2 border border-gray-300;
 }
