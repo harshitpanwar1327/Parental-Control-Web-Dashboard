@@ -27,9 +27,11 @@ const Login = () => {
 
       const token = response.data.token;
       const parentId = response.data.parentId;
+      const license = response.data.license;
       sessionStorage.setItem('authUser', email);
       sessionStorage.setItem('authToken', token);
       sessionStorage.setItem('parentId', parentId);
+      sessionStorage.setItem('license', license);
       sessionStorage.setItem('isAuthenticated', true);
 
       setEmail('');

@@ -4,7 +4,7 @@ export class DevicesModels {
         this.os = devicesData.os,
         this.mac_address = devicesData.mac_address,
         this.ip_address = devicesData.ip_address,
-        this.disc_serial = devicesData.disc_serial,
+        this.disk_serial = devicesData.disk_serial,
         this.license = devicesData.license
     }
 }

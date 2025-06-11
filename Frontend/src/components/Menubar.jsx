@@ -97,7 +97,7 @@ const Menubar = ({heading}) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, logout!"
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -108,6 +108,7 @@ const Menubar = ({heading}) => {
         sessionStorage.removeItem('authUser');
         sessionStorage.removeItem('authToken');
         sessionStorage.removeItem('parentId');
+        sessionStorage.removeItem('license');
         sessionStorage.removeItem('isAuthenticated');
         navigate('/login');
       }

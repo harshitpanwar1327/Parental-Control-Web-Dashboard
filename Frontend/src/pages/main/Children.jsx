@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddProfile from '../../modals/AddProfile'
 import EditProfile from '../../modals/EditProfile'
+import ManageDevices from '../../modals/ManageDevices'
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded'
 import API from '../../utils/API'
 import Swal from 'sweetalert2'
@@ -14,6 +15,7 @@ import Stack from '@mui/material/Stack'
 const Children = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [openManageDevices, setOpenManageDevices] = useState(false);
   const [selectedId, setSelectedId] = useState(0);
   const [search, setSearch] = useState('');
   const [profileData, setProfileData] = useState([]);
@@ -42,6 +44,11 @@ const Children = () => {
       console.log(error);
     }
   }, [])
+
+  const handleManageDevices = (id) => {
+    setOpenManageDevices(true);
+    setSelectedId(id);
+  }
 
   const handleEdit = async (id) => {
     setOpenEditModal(true);
@@ -88,7 +95,7 @@ const Children = () => {
           <button className='bg-blue-500 hover:bg-blue-700 text-white' onClick={()=>setOpenModal(true)}>Add Profile</button>
         </div>
 
-        <div className='grow m-4'>
+        <div className='grow m-4 overflow-auto'>
           <table className='w-full'>
             <thead>
               <tr>
@@ -106,7 +113,7 @@ const Children = () => {
                   <td className='table-data'><AccountCircleIcon /></td>
                   <td className='table-data'>{data.name}</td>
                   <td className='table-data'>{data.age}</td>
-                  <td className="table-data"><DevicesRoundedIcon className='text-green-500 hover:text-green-700 cursor-pointer'/></td>
+                  <td className="table-data"><DevicesRoundedIcon className='text-green-500 hover:text-green-700 cursor-pointer' onClick={() => handleManageDevices(data.id)}/></td>
                   <td className='table-data'><EditIcon className='text-blue-500 hover:text-blue-700 cursor-pointer' onClick={() => handleEdit(data.id)}/></td>
                   <td className='table-data'><DeleteIcon className='text-red-500 hover:text-red-700 cursor-pointer' onClick={() => handleDelete(data.id)}/></td>
                 </tr>
@@ -124,6 +131,7 @@ const Children = () => {
       </div>
       {openModal && <AddProfile setOpenModal={setOpenModal} fetchChildrenProfiles={fetchChildrenProfiles} />}
       {openEditModal && <EditProfile setOpenEditModal={setOpenEditModal} fetchChildrenProfiles={fetchChildrenProfiles} selectedId={selectedId} />}
+      {openManageDevices && <ManageDevices setOpenModal={setOpenManageDevices} selectedId={selectedId} />}
     </div>
   )
 }

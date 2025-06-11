@@ -13,9 +13,9 @@ export const registerDeviceLogic = async (deviceData) => {
     }
 }
 
-export const getDevicesLogic = async (license) => {
+export const manageDevicesLogic = async (license, childId) => {
     try {
-        let [row] = await pool.query(`SELECT * FROM devices WHERE license = ?`, license);
+        let [row] = await pool.query(`SELECT * FROM devices WHERE license = ? AND (childId = ? || childId IS NULL)`, [license, childId]);
 
         return {success: true, message: "Devices fetched successfully", data: row};
     } catch (error) {
@@ -34,5 +34,16 @@ export const updateDeviceLogic = async (childId, id) => {
     } catch (error) {
         console.log(error);
         return {success: false, message: "Device not allocated to any child!"};
+    }
+}
+
+export const getDevicesLogic = async (license) => {
+    try {
+        let [row] = await pool.query(`SELECT * FROM devices WHERE license = ?`, license);
+
+        return {success: true, message: "Devices fetched successfully", data: row};
+    } catch (error) {
+        console.log(error);
+        return {success: false, message: "Unable to fetch devices!"};
     }
 }

@@ -1,4 +1,4 @@
-import {registerDeviceLogic, getDevicesLogic, updateDeviceLogic} from '../services/DevicesServices.js'
+import {registerDeviceLogic, manageDevicesLogic, getDevicesLogic, updateDeviceLogic} from '../services/DevicesServices.js'
 import {DevicesModels} from '../models/DevicesModels.js'
 
 export const registerDevice = async (req, res) => {
@@ -23,15 +23,11 @@ export const registerDevice = async (req, res) => {
     }
 }
 
-export const getDevices = async (req, res) => {
-    const {license} = req.params;
-
-    if(!license) {
-        return res.status(400).json({success: false, message: "License not found!"});
-    }
+export const manageDevices = async (req, res) => {
+    const {license, childId} = req.body;
 
     try {
-        let response = await getDevicesLogic(license);
+        let response = await manageDevicesLogic(license, childId);
         if(response.success) {
             return res.status(200).json(response);
         } else {
@@ -52,6 +48,26 @@ export const updateDevice = async (req, res) => {
 
     try {
         let response = await updateDeviceLogic(childId, id);
+        if(response.success) {
+            return res.status(200).json(response);
+        } else {
+            return res.status(400).json(response);
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({success: false, message: "Internal Server Error"});
+    }
+}
+
+export const getDevices = async (req, res) => {
+    const {license} = req.params;
+
+    if(!license) {
+        return res.status(400).json({success: false, message: "License not found!"});
+    }
+
+    try {
+        let response = await getDevicesLogic(license);
         if(response.success) {
             return res.status(200).json(response);
         } else {

@@ -42,7 +42,7 @@ export const loginUserLogic = async (email, password) => {
             {expiresIn: '3hr'}
         )
 
-        return {success: true, message: "User login successfully", token: token, parentId: userRow[0].id};
+        return {success: true, message: "User login successfully", token: token, parentId: userRow[0].id, license: userRow[0].license};
     } catch (error) {
         console.log(error);
         return {success: false, message: "Something went wrong while fetching user data in database!"};

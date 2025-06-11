@@ -26,9 +26,9 @@ const devices_table = `CREATE TABLE IF NOT EXISTS devices(
     os VARCHAR(50) NOT NULL,
     mac_address VARCHAR(20),
     ip_address VARCHAR(45),
-    disc_serial VARCHAR(50) NOT NULL,
+    disk_serial VARCHAR(50) NOT NULL,
     license VARCHAR(16) NOT NULL,
-    FOREIGN KEY (childId) REFERENCES devices(id) ON DELETE CASCADE
+    FOREIGN KEY (childId) REFERENCES children(id) ON DELETE CASCADE
 )`
 
 const activity_table = `CREATE TABLE IF NOT EXISTS activities(
