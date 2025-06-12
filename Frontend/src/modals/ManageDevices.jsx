@@ -79,15 +79,16 @@ const ManageDevices = ({setOpenModal, selectedId}) => {
   }
 
   return (
-    <div className='fixed top-0 left-0 bg-[#0000005a] dark:bg-[#ffffff5a] w-screen h-screen flex items-center justify-center' onClick={()=>setOpenModal(false)}>
-      <div className='flex flex-col bg-[var(--primary-sidebar)] p-4 mx-8 rounded-md h-3/4' onClick={(e)=>e.stopPropagation()}>
+    <div className='fixed top-0 left-0 bg-[#0000005a] dark:bg-[#ffffff5a] w-screen h-screen flex items-center justify-center z-100' onClick={()=>setOpenModal(false)}>
+      <div className='flex flex-col bg-[var(--primary-sidebar)] p-4 rounded-md h-3/4 w-full md:w-auto' onClick={(e)=>e.stopPropagation()}>
         <div className='flex justify-between'>
           <h2 className='font-semibold'>Manage Devices</h2>
           <CancelIcon className='text-red-500 hover:text-red-600 cursor-pointer' onClick={(e)=>setOpenModal(false)}/>
         </div>
 
+        <input type="text" name='search' id='search' placeholder='&#128269; Search here...' className='w-1/3 border border-gray-300 my-2 px-4 py-2 rounded-full' value={search} onChange={(e)=>setSearch(e.target.value)} />
+
         <div className='flex flex-col grow overflow-auto'>
-          <input type="text" name='search' id='search' placeholder='&#128269; Search here...' className='w-1/3 border border-gray-300 my-2 px-4 py-2 rounded-full' value={search} onChange={(e)=>setSearch(e.target.value)} />
           <table>
             <thead>
               <tr>

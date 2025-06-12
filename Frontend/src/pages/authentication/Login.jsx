@@ -69,13 +69,13 @@ const Login = () => {
   }
 
   return (
-    <div className='w-screen h-screen flex'>
+    <div className='w-screen h-screen flex flex-col lg:flex-row lg:overflow-hidden'>
       {loading && (
         <div className='fixed top-0 left-0 flex justify-center items-center w-screen h-screen bg-[rgba(255,255,255,0.5)] backdrop-blur-sm'>
           <ClipLoader color='rgb(123, 72, 255'/>
         </div>
       )}
-      <div className='w-1/2 flex flex-col justify-center px-16'>
+      <div className='flex flex-col justify-center p-8 lg:w-1/2'>
         <motion.div className='flex'
           initial={{opacity: 0, x: -400}}
           animate={{opacity: 1, x: 0}}
@@ -106,7 +106,7 @@ const Login = () => {
         </motion.form>
       </div>
 
-      <motion.div className='w-1/2 m-2'
+      <motion.div className='p-4 lg:w-1/2'
         initial = {{opacity: 0, scale: 0}}
         animate = {{opacity: 1, scale: 1}}
         transition={{type: 'spring', stiffness: 100, damping: 20, delay: 0.8}}

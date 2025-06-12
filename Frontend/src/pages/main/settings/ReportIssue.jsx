@@ -152,7 +152,7 @@ const ReportIssue = () => {
         </motion.h2>
         <div className='flex flex-col gap-10 my-4 lg:flex-row'>
           <form className='flex flex-col justify-center gap-2 lg:w-1/2' onSubmit={handleForm}>
-            <motion.select name="deviceId" id="deviceId" className='auth-input' value={deviceId} onChange={(e) => setDeviceId(e.target.value)} required
+            <motion.select name="deviceId" id="deviceId" className='auth-input !w-full' value={deviceId} onChange={(e) => setDeviceId(e.target.value)} required
               initial={{opacity: 0, y: 100}}
               animate={{opacity: 1, y: 0}}
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 0.2}}
@@ -162,7 +162,7 @@ const ReportIssue = () => {
                 <option value={data.id} key={index}>{data.device_name}</option>
               ))}
             </motion.select>
-            <motion.select name="urgency" id="urgency" className='auth-input' value={urgency} onChange={(e) => setUrgency(e.target.value)} 
+            <motion.select name="urgency" id="urgency" className='auth-input !w-full' value={urgency} onChange={(e) => setUrgency(e.target.value)} 
               initial={{opacity: 0, y: 100}}
               animate={{opacity: 1, y: 0}}
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 0.4}}
@@ -172,7 +172,7 @@ const ReportIssue = () => {
               <option className='dark:bg-black' value="medium">Medium</option>
               <option className='dark:bg-black' value="low">Low</option>
             </motion.select>
-            <motion.select name="issue_type" id="issue_type" className='auth-input' value={issueType} onChange={(e) => setIssueType(e.target.value)}  required
+            <motion.select name="issue_type" id="issue_type" className='auth-input !w-full' value={issueType} onChange={(e) => setIssueType(e.target.value)}  required
               initial={{opacity: 0, y: 100}}
               animate={{opacity: 1, y: 0}}
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 0.6}}
@@ -182,12 +182,12 @@ const ReportIssue = () => {
                 <option className='dark:bg-black' value={data} key={index}>{data}</option>
               ))}
             </motion.select>
-            <motion.textarea name="issue_desc" id="issue_desc" className='auth-input' placeholder='Describe your issue...' rows={4} value={issueDesc} onChange={(e) => setIssueDesc(e.target.value)}  required
+            <motion.textarea name="issue_desc" id="issue_desc" className='auth-input !w-full' placeholder='Describe your issue...' rows={4} value={issueDesc} onChange={(e) => setIssueDesc(e.target.value)}  required
               initial={{opacity: 0, y: 100}}
               animate={{opacity: 1, y: 0}}
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 0.8}}
             ></motion.textarea>
-            <motion.input type="file" name="screenshot" id="screenshot" accept='image/*' className='w-1/2 bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded border border-dashed' onChange={(e) => setScreenshot(e.target.files[0])} ref={fileInputRef}
+            <motion.input type="file" name="screenshot" id="screenshot" accept='image/*' className='bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded border border-dashed' onChange={(e) => setScreenshot(e.target.files[0])} ref={fileInputRef}
               initial={{opacity: 0, y: 100}}
               animate={{opacity: 1, y: 0}}
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 1}}
@@ -198,8 +198,8 @@ const ReportIssue = () => {
               transition={{type: 'spring', stiffness: 100, damping: 12, delay: 1.2}}
             >Submit Issue</motion.button>
           </form>
-          <div className='w-2/3 flex items-center justify-center bg-[#FCEBCF] dark:bg-[#a0b6ff] support-image-custom-radius'>
-            <motion.img src={SupportImage} alt="Support Image" className='h-100'
+          <div className='w-full flex items-center justify-center bg-[#FCEBCF] dark:bg-[#a0b6ff] support-image-custom-radius'>
+            <motion.img src={SupportImage} alt="Support Image" className='h-65 md:h-100'
               animate={{
                 scale: [1, 1.1, 1],
                 y: [0, -10, 0]

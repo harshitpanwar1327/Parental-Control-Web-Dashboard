@@ -16,7 +16,8 @@ export const getChildren = async (req, res) => {
 }
 
 export const insertChild = async (req, res) => {
-    const {parentId, name, age, imageFileName} = req.body;
+    const {parentId, name, age} = req.body;
+    const imageFileName = req.file?.filename;
 
     if(!parentId || !name) {
         return res.status(400).json({success: false, message: "Fill all the required fields!"})
@@ -57,7 +58,8 @@ export const getChild = async (req, res) => {
 
 export const updateChild = async (req, res) => {
     const {childId} = req.params;
-    const {parentId, name, age, imageFileName} = req.body;
+    const {parentId, name, age} = req.body;
+    const imageFileName = req.file.filename;
 
     if(!childId) return res.status(400).json({success: false, message: "ChildId cannot be undefined!"});
 

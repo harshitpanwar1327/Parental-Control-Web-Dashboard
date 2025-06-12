@@ -5,7 +5,9 @@ const Monitoring = () => {
   return (
     <div className='page'>
       <Menubar heading="Monitoring"/>
-      <div className='grow overflow-auto'>Children</div>
+      <div className='grow overflow-auto'>
+        
+      </div>
     </div>
   )
 }

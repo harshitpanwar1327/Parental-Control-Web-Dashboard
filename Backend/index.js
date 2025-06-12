@@ -14,14 +14,25 @@ import ActivitiesRoutes from './routes/ActivitiesRoutes.js'
 import ControlsRoutes from './routes/ControlsRoutes.js'
 import SettingsRoutes from './routes/SettingsRoutes.js'
 import ReportIssueRoutes from './routes/ReportIssueRoutes.js'
+import path, {dirname} from 'path'
+import { fileURLToPath } from 'url'
 
 dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
+const fileName = fileURLToPath(import.meta.url);
+const dirName = dirname(fileName);
 
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+
+app.use('/uploads/profiles', express.static(path.join(dirName, 'uploads/profiles'), {
+  setHeaders: (res, path) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  }
+}));
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000,

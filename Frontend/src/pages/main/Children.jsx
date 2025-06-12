@@ -89,8 +89,8 @@ const Children = () => {
   return (
     <div className='page'>
       <Menubar heading="Children Profiles"/>
-      <div className='flex flex-col grow bg-[var(--primary-sidebar)] m-4 rounded-md'>
-        <div className='flex justify-between p-2'>
+      <div className='flex flex-col grow bg-[var(--primary-sidebar)] m-2 rounded-md'>
+        <div className='flex flex-col gap-4 justify-between p-2 md:flex-row'>
           <input type="text" name='search' id='search' placeholder='&#128269; Search here...' className='border border-gray-300 px-4 py-2 rounded-full' value={search} onChange={(e)=>setSearch(e.target.value)}/>
           <button className='bg-blue-500 hover:bg-blue-700 text-white' onClick={()=>setOpenModal(true)}>Add Profile</button>
         </div>
@@ -110,7 +110,7 @@ const Children = () => {
             <tbody>
               {paginatedData.map((data, index)=>(
                 <tr className='hover:bg-[var(--table-data)]' key={index}>
-                  <td className='table-data'><AccountCircleIcon /></td>
+                  <td className='table-data'>{data.imageFileName? <img src={`http://localhost:5000/uploads/profiles/${data.imageFileName}`} alt="Profile" className='h-10 w-10 rounded-full' />: <AccountCircleIcon sx={{fontSize: '40px'}}/>}</td>
                   <td className='table-data'>{data.name}</td>
                   <td className='table-data'>{data.age}</td>
                   <td className="table-data"><DevicesRoundedIcon className='text-green-500 hover:text-green-700 cursor-pointer' onClick={() => handleManageDevices(data.id)}/></td>
